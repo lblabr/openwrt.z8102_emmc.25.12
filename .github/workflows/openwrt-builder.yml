@@ -17,16 +17,16 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
-  FEEDS_CONF: feeds.conf.default
+  REPO_URL: https://github.com/lblabr/openwrt.openwrt
+  REPO_BRANCH: openwrt-25.10
+  FEEDS_CONF: feeds.conf
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
-  TZ: Asia/Shanghai
+  TZ: Europe/Berlin
 
 jobs:
   build:
@@ -50,6 +50,14 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
+    - name: cache workdir
+      uses: actions/cache@v5.0.1
+      with:
+        path: /workdir
+        key: ${{runner.os}}-workdir-hashFiles('**/.config')
+        restore-keys: |
+          ${{runner.os}}-workdir
+        
     - name: Clone source code
       working-directory: /workdir
       run: |
