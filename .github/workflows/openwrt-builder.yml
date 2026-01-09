@@ -54,9 +54,9 @@ jobs:
       uses: actions/cache@v5.0.1
       with:
         path: /workdir
-        key: ${{runner.os}}-workdir-${{REPO_BRANCH}}-hashFiles('**/.config')
+        key: ${{runner.os}}-workdir-${{ $REPO_BRANCH }}-${{ hashFiles('**/.config') }}
         restore-keys: |
-          ${{runner.os}}-workdir-${{REPO_BRANCH}}
+          ${{runner.os}}-workdir-${{ $REPO_BRANCH }}
         
     - name: Clone source code
       working-directory: /workdir
