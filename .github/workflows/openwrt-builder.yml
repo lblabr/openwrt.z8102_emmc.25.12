@@ -35,10 +35,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-      uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: asciidoc
-        version: 1.0
         
     - name: Initialization environment
       env:
