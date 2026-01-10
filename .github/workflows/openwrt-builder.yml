@@ -35,6 +35,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
+    
+    - name: do apt chache
+      uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: autoconf
+        version: 1.0
         
     - name: Initialization environment
       env:
