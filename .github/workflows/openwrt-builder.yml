@@ -39,7 +39,7 @@ jobs:
     - name: do apt chache
       uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf asciidoc
+        packages: ack autoconf asciidoc
         version: 1.0
         
     - name: Initialization environment
